@@ -1,0 +1,139 @@
+class Foods {
+    constructor(flavors, course) {
+        this.flavors = flavors;
+        this.course = course;
+    }
+
+    desribe() {
+        return '${this.course} has this ${this.flavors}.';
+    }
+class Restaurant {
+    construtor(name) {
+        this.name = name;
+        this.food = [];
+    }
+
+    addFoods(Food) {
+        if (food instanceof Foods) {
+            this.food.push(Food);
+        } else {
+        throw new Error('You can only add add instance of Food. Arugument is not a food: ${Foods}');    
+        }
+    }
+
+    desribe() {
+        return '${this.course) is from ${this.food.lenth}.';
+    }
+}
+
+class Menu{
+    constructor() {
+      this.names = [];
+      this.selectedName = null;  
+    }
+
+    start() {
+        let selection = this.showMainMenuOptions();
+
+        while (selection != 0) {
+            switch (selection) {
+                case '1' :
+                    this.createRestaurant();
+                    break;
+                case '2' :
+                    this.viewRestaurant();
+                    break;
+                case '3' :   
+                    this.deleteRestaurant();
+                    break;
+                case '4' :  
+                    this.displayRestaurant();
+                    break;
+                default: 
+                    selection = 0;  
+            }
+            selection = this.showMainMenuOptions();
+        }
+
+        alert('Goodbye');
+    }
+
+    showMainMenuOptions() {
+        return prompt('
+        0) Exit
+        1) Create new place
+        2) View Place
+        4) display place
+        ')
+    };
+
+    showRestaurantMenuOptions(restaurantInfo) {
+        return prompt('
+        0) back
+        1) create restaurant
+        2) delete restaurant 
+        ------------------------
+        ${restaurantInfo}
+        ')
+    };
+
+    displayRestaurant() {
+        let restaurantString = ' ';
+        for (let i = 0; i < this.names.length; i++) {
+            restaurantString += i + ') ' + this.names[i].name + '\n';
+        }
+        alert(restaurantString);
+    }
+
+    createPlace() {
+        let name = prompt('Enter name for new Restaurant: ')
+        this.Restaurant.push(new Restaurant(name))
+    }
+
+    viewRestaurant() {
+       let index = prompt('Enter the index of the Restaurant you wish to view:') 
+       if(index > -1 && index < this.names.length) {
+        this.selectedRestaurant = this.names[index];
+        let description = 'Restaurant Name: ' + this.selectedRestaurant.names + '\n';
+        
+        for (let i = 0; i < this.selectedRestaurant.names.length; i++) {
+            description += i + ') ' + this.selectedRestaurant.names[i].name + ' - ' + this.selectedName.names[i].course + '\n';
+
+        }
+
+        let selction = this.showRestaurantMenuOptions(description);
+        switch (selction) {
+            case '1':
+                this.createRestaurant();
+                break;
+            case '2':
+                this.deleteRestaurant();    
+        }
+      }
+    }
+
+    deleteRestaurant() {
+        let index = prompt('Enter the index of the restaurant you want to delete: ');
+        if (index > -1 && index < this.restaurant.length) {
+            this.restaurant.splice(index, 1);
+        }
+    }
+
+    createFood() {
+        let flavors = prompt('Enter flavor for new foods');
+        let course = prompt("Enter course from new Restuarant");
+        this.selectedRestaurant.name.push(new Foods(flavors, course));
+    }
+
+    deleteFood() {
+        let index = prompt('Enter the index of the course you want to delete: ');
+        if (index > -1 && index < this.selectedRestaurant.names.length) {
+            this.selectedRestaurant.names.splice(index, 1);
+        }
+    }
+
+}
+
+let menu = new Menu();
+menu.start();
+// pc broke and wasnt able to work on this till 9/03/2022 for 1.5 hours so wasnt able to see what was wrong other than a few things. did what the video did but still got errors
